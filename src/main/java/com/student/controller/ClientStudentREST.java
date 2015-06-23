@@ -62,7 +62,7 @@ public class ClientStudentREST {
         System.out.println(student);
     }
  
-    private static void testGetDummyStudent() {
+    public static void testGetDummyStudent() {
         RestTemplate restTemplate = new RestTemplate();
         Student student = restTemplate.getForObject(SERVER_URI + StudentConstants.DUMMY_STUDENT, Student.class);
         printStudentData(student);
