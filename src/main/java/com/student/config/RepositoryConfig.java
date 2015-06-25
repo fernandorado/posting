@@ -25,7 +25,7 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 @Configuration
 @EnableWebMvc
 @EnableTransactionManagement
-@ComponentScan(basePackages = {"com.student.controller","com.student.services","com.student.repositories"})
+@ComponentScan(basePackages = {"com.student.controller","com.student.services"})
 @PropertySource("classpath:resources/application.properties")
 @EnableJpaRepositories("com.student.repositories")
 public class RepositoryConfig {
@@ -41,7 +41,7 @@ public class RepositoryConfig {
 	private static final String PROPERTY_NAME_HIBERNATE_HBM2DDL_AUTO = "hibernate.hbm2ddl.auto";
 	
 	@Autowired
-	private Environment env;
+	Environment env;
 
 	@Bean
 	@Autowired(required=true)

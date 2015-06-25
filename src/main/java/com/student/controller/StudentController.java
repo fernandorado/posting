@@ -16,13 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.student.entities.Student;
-import com.student.services.StudentService;
-import com.student.util.HibernateUtil;
-import com.student.util.StudentConstants;
-
 @RestController
-@ComponentScan(basePackages = {"com.student.controller","com.student.services","com.student.repositories"})
 public class StudentController {
 //
 //    private static final Logger logger = LoggerFactory.getLogger(StudentController.class);

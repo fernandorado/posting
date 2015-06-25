@@ -9,11 +9,11 @@ import org.springframework.transaction.annotation.Transactional;
 import com.student.entities.Student;
 import com.student.repositories.StudentRepository;
 
-@Service
+@Service("serviceStudent")
 public class StudentService {
 	
 	@Autowired
-	private StudentRepository studentRepository;
+	StudentRepository studentRepository;
 
 	@Transactional
 	public List<Student> getAllStudents() {
