@@ -1,36 +1,47 @@
+buildscript {
+	repositories {
+		mavenCentral()
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:1.2.4.RELEASE")
+	}
+}
+
 apply plugin: 'java'
-apply plugin: 'war'
-apply plugin: 'eclipse-wtp'
- 
-// JDK 7
+apply plugin: 'eclipse'
+apply plugin: 'spring-boot'
+
+jar {
+	baseName = 'gs-rest-service'
+	version =  '0.1.0'
+}
+
+repositories {
+	mavenCentral()
+	maven{url "http://download.java.net/maven/2/"}
+}
+
 sourceCompatibility = 1.7
 targetCompatibility = 1.7
- 
-repositories {
-    mavenLocal()
-    mavenCentral()
-}
- 
-dependencies {
-	compile 'org.springframework:spring-webmvc:4.0.0.RELEASE'
-	compile 'javax.servlet:javax.servlet-api:3.0.1'
-	compile 'org.hibernate:hibernate-core:4.3.10.Final'
-	compile 'com.fasterxml.jackson.core:jackson-databind:2.6.0-rc2'
-	compile 'org.slf4j:slf4j-api:1.7.12'
-	compile 'org.slf4j:jcl-over-slf4j:1.7.12'
-	compile 'org.slf4j:slf4j-log4j12:1.7.12'
-	compile 'javax.inject:javax.inject:1'
-	compile 'mysql:mysql-connector-java:5.1.35'
 
+dependencies {
+	compile("javax.ws.rs:jsr311-api:1.1.1")
+	compile("org.springframework.boot:spring-boot-starter-web")
+	compile 'org.hibernate:hibernate-entitymanager:4.3.8.Final'
+	compile 'org.hibernate:hibernate-core:4.3.8.Final'
+	compile 'org.jboss.logging:jboss-logging:3.2.1.Final'
+	compile 'org.springframework.data:spring-data-jpa'
+	compile 'mysql:mysql-connector-java:5.1.34'
+	testCompile("junit:junit")
 }
- 
- 
-//For Eclipse IDE only
-eclipse {
-  wtp {
-    component {
-      //define context path, default to project folder name
-      contextPath = 'spring4'
-    }
-  }
+
+task wrapper(type: Wrapper) {
+	gradleVersion = '2.3'
 }
+
+springBoot {
+	mainClass = "com.student.config.Application"
+}
+
+
+

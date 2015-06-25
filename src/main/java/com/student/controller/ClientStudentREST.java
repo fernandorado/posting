@@ -3,15 +3,15 @@ package com.student.controller;
 import java.util.LinkedHashMap;
 import java.util.List;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.web.client.RestTemplate;
+
+import com.student.entities.Student;
+import com.student.util.StudentConstants;
 
  
 public class ClientStudentREST {
  
     public static final String SERVER_URI = "http://localhost:8080/rest-service-gradle/";
-    private static final Logger logger = LoggerFactory.getLogger(ClientStudentREST.class);
     
      
     public static void main(String args[]){
