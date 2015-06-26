@@ -44,8 +44,8 @@ public class ClientStudentREST {
     
     @Test
     public void testDeleteStudent() {
-        int id = 4;
-        String student = restTemplate.postForObject(SERVER_URI + "rest/student/delete?id="+id, id, String.class);
+        int id = 5;
+        String student = restTemplate.postForObject(SERVER_URI + "rest/student/delete", id, String.class);
         System.out.println(student);
     }
  

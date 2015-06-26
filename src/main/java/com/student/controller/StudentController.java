@@ -35,7 +35,7 @@ public class StudentController {
      
     @RequestMapping(value = StudentConstants.GET_ALL_STUS, method = RequestMethod.GET, produces="application/json")
     public @ResponseBody List<Student> getAllStudents() {
-        logger.info("Start getAllStudents.");
+        logger.info("Get All.");
 		List<Student> students = studentService.getAllStudents();  
 		for(Student student : students) {  
 			System.out.println("Roll Number: "+student.getRollNumber()+", Student Name: "+student.getStudentName()+", Course: "+student.getCourse());  
@@ -45,23 +45,21 @@ public class StudentController {
 
     @RequestMapping(value = StudentConstants.CREATE_STUDENT, method = RequestMethod.POST, produces="application/json")
     public @ResponseBody Student createStudent(@RequestBody Student student) {
-        logger.info("Start createStudent.");
+        logger.info("Create by"+ student);
         studentService.createStudent(student);
         return student;
     }
     
     @RequestMapping(value = StudentConstants.GET_STUDENT, method = RequestMethod.GET, produces="application/json")
 	public @ResponseBody Student getStudent(@RequestParam(value="id") int idStudent) {
-		
-		System.out.println("Data Received: " + idStudent);
+		System.out.println("Get by id: " + idStudent);
 		Student currentStudent = studentService.getStudent(idStudent);
-		System.out.println("Data Updated: " + currentStudent.toString());
 		return currentStudent;
 	}
      
     @RequestMapping(value = StudentConstants.DELETE_STUDENT, method = RequestMethod.POST, produces="application/json")
-    public @ResponseBody String deleteStudent(@RequestParam (value="id") int idStudent) {
-        logger.info("Start deleteStudent.");
+    public @ResponseBody String deleteStudent(@RequestBody int idStudent) {
+        logger.info("Delete by id "+ idStudent);
         studentService.deleteStudent(idStudent);
         return "The Student with id:"+ idStudent +" was removed";
     }
