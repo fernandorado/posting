@@ -5,7 +5,7 @@ import org.springframework.stereotype.Repository;
 
 import com.student.entities.Student;
 
-@Repository("repositoryStudent")
-public interface StudentRepository extends JpaRepository<Student,Long>{
+@Repository
+public interface StudentRepository extends JpaRepository<Student,Integer>{
 	Student findById(String id);
 }

@@ -11,7 +11,7 @@ import com.student.util.StudentConstants;
  
 public class ClientStudentREST {
  
-    public static final String SERVER_URI = "http://localhost:8080/rest-service-gradle/";
+    public static final String SERVER_URI = "http://localhost:8080/";
     
      
     public static void main(String args[]){
@@ -57,8 +57,8 @@ public class ClientStudentREST {
     
     public static void testDeleteStudent() {
         RestTemplate restTemplate = new RestTemplate();
-        int id = 1;
-        String student = restTemplate.postForObject(SERVER_URI + "rest/student/delete", id, String.class);
+        int id = 2;
+        String student = restTemplate.postForObject(SERVER_URI + "rest/student/delete?id="+id, id, String.class);
         System.out.println(student);
     }
  

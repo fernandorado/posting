@@ -3,12 +3,14 @@ package com.student.services;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.student.entities.Student;
 import com.student.repositories.StudentRepository;
 
+@Transactional
 @Service("serviceStudent")
 public class StudentService {
 	
@@ -26,14 +28,14 @@ public class StudentService {
 	}
 	
 	@Transactional
-	public Student deleteStudent(long id) {
+	public Student deleteStudent(int id) {
 		Student student = this.studentRepository.findOne(id);
 		this.studentRepository.delete(student);
 		return  student;
 	}
 	
 	@Transactional
-	public Student getStudent(long id) {
+	public Student getStudent(int id) {
 		return this.studentRepository.findOne(id);
 	}
 }
