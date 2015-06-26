@@ -25,8 +25,9 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 @Configuration
 @EnableWebMvc
 @EnableTransactionManagement
-@ComponentScan(basePackages = {"com.student.controller","com.student.services", "com.student.repositories"})
+@ComponentScan(basePackages = {"com.student.controller","com.student.services", "com.student.repositories","resources"})
 @EnableJpaRepositories("com.student.repositories")
+@PropertySource("classpath:application.properties")
 @EnableAutoConfiguration
 @SpringBootApplication
 public class Application {
@@ -34,16 +35,14 @@ public class Application {
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
     }
-
     
-	private static final String PROPERTY_NAME_DATABASE_DRIVER = "jdbc.driverClassNam";
+	private static final String PROPERTY_NAME_DATABASE_DRIVER = "jdbc.driverClassName";
 	private static final String PROPERTY_NAME_DATABASE_URL = "jdbc.url";
 	private static final String PROPERTY_NAME_DATABASE_USERNAME = "jdbc.username";
 	private static final String PROPERTY_NAME_DATABASE_PASSWORD = "jdbc.password";
 
 	private static final String PROPERTY_NAME_HIBERNATE_DIALECT = "hibernate.dialect";
 	private static final String PROPERTY_NAME_HIBERNATE_SHOW_SQL = "hibernate.show_sql";
-	private static final String PROPERTY_NAME_HIBERNATE_HBM2DDL_AUTO = "hibernate.hbm2ddl.auto";
 	private static final String PROPERTY_NAME_ENTITYMANAGER_PACKAGES_TO_SCAN = "entitymanager.packages.to.scan";
 	
 	@Autowired
@@ -69,10 +68,10 @@ public class Application {
 	@Bean
 	public DataSource dataSource() {
 		DriverManagerDataSource dataSource = new DriverManagerDataSource();
-		dataSource.setDriverClassName("com.mysql.jdbc.Driver");
-		dataSource.setUrl("jdbc:mysql://localhost:3306/studentsdb");
-		dataSource.setUsername("root");
-		dataSource.setPassword("r00t*root");
+		dataSource.setDriverClassName(env.getProperty(PROPERTY_NAME_DATABASE_DRIVER));
+		dataSource.setUrl(env.getProperty(PROPERTY_NAME_DATABASE_URL));
+		dataSource.setUsername(env.getProperty(PROPERTY_NAME_DATABASE_USERNAME));
+		dataSource.setPassword(env.getProperty(PROPERTY_NAME_DATABASE_PASSWORD));
 		return dataSource;
 	}
 
